@@ -1,0 +1,26 @@
+/* src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Tus estilos personalizados deben ir DEBAJO de las directivas de Tailwind */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #0d1117; /* Tu color de fondo estático */
+  color: #e6edf3; /* Color de texto por defecto */
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#root { /* En Vite, el div principal donde se monta la app es #root */
+  min-height: 100vh;
+  position: relative;
+}
