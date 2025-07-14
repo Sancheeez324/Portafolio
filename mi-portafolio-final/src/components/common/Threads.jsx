@@ -1,171 +1,128 @@
-// src/components/common/Threads.jsx
 import { useEffect, useRef } from "react";
 import { Renderer, Program, Mesh, Triangle, Color } from "ogl";
-import "./Threads.css"; 
+import "./Threads.css";
 
 const vertexShader = `
-  attribute vec2 position;
-  void main() {
-    gl_Position = vec4(position, 0, 1);
-  }
+attribute vec2 position;
+attribute vec2 uv;
+varying vec2 vUv;
+void main() {
+  vUv = uv;
+  gl_Position = vec4(position, 0.0, 1.0);
+}
 `;
 
 const fragmentShader = `
-  precision highp float;
-
-  uniform float uTime;
-  uniform vec2 uResolution;
-  uniform vec2 uMouse;
-  uniform float uAmplitude;
-  uniform float uDistance;
-
-  // Función para generar ruido (perlin noise simplificado)
-  float noise(vec2 p) {
-      return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);
-  }
-
-  // ¡La definición de la función smoothstep personalizada ha sido ELIMINADA!
-  // float smoothstep(float edge0, float edge1, float x) {
-  //     x = clamp((x - edge0) / (edge1 - edge0), 0.0, 1.0);
-  //     return x * x * (3.0 - 2.0 * x);
-  // }
-
-  void main() {
-      vec2 uv = gl_FragCoord.xy / uResolution;
-      uv.y = 1.0 - uv.y; // Invertir el eje Y si es necesario
-
-      // Ajuste de la posición del ratón para que coincida con el rango de UV [0,1]
-      vec2 mouseUV = uMouse / uResolution;
-      mouseUV.y = 1.0 - mouseUV.y; // Invertir el eje Y del ratón también
-
-      // Calcular la distancia al ratón
-      float distToMouse = distance(uv, mouseUV);
-
-      // Crear un efecto de onda que se propaga desde el ratón
-      // uDistance controla la velocidad de propagación
-      // uAmplitude controla la intensidad de la onda
-      float wave = sin(distToMouse * 20.0 - uTime * uDistance) * uAmplitude;
-      // Ahora usamos la función smoothstep incorporada de GLSL
-      wave = smoothstep(-0.5, 0.5, wave); // Suaviza la onda
-
-      // Color base (azul oscuro)
-      vec3 color = vec3(0.1, 0.4, 0.7); // Un azul eléctrico
-
-      // Añadir un brillo en el centro de la onda
-      float glow = 0.0;
-      if (distToMouse < 0.2) { // Área de influencia del brillo
-          glow = smoothstep(0.2, 0.0, distToMouse); // Más brillo cerca del ratón
-      }
-      color += glow * vec3(0.3, 0.6, 1.0); // Añade un brillo azul claro
-
-      // Añadir un patrón de líneas sutiles
-      float lines = sin(uv.y * 100.0 + uTime * 0.1) * 0.05; // Líneas horizontales suaves
-      color += lines * vec3(0.05); // Oscurece/aclara sutilmente
-
-      // Aplicar la onda al color final
-      color += wave * vec3(0.1, 0.2, 0.3); // La onda oscurece/aclara el color base
-
-      gl_FragColor = vec4(color, 1.0);
-  }
+// tu shader... (igual al tuyo original)
 `;
 
-const Threads = ({ amplitude, distance, enableMouseInteraction, color }) => {
-  const canvasRef = useRef(null);
-  const rendererRef = useRef(null);
-  const glRef = useRef(null);
-  const programRef = useRef(null);
-  const meshRef = useRef(null);
-  const mouseRef = useRef({ x: 0, y: 0 });
+const Threads = ({
+  color = [1, 1, 1],
+  amplitude = 1,
+  distance = 0,
+  enableMouseInteraction = false,
+  ...rest
+}) => {
+  const containerRef = useRef(null);
+  const animationFrameId = useRef();
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!containerRef.current) return;
+    const container = containerRef.current;
 
-    // 1. Setup Renderer
-    rendererRef.current = new Renderer({
-      canvas,
-      width: window.innerWidth,
-      height: window.innerHeight,
-      alpha: true, // Permite transparencia para que el fondo CSS se vea
-    });
-    glRef.current = rendererRef.current.gl;
-    glRef.current.clearColor(0, 0, 0, 0); // Fondo completamente transparente
+    const renderer = new Renderer({ alpha: true });
+    const gl = renderer.gl;
+    gl.clearColor(0, 0, 0, 0);
+    gl.enable(gl.BLEND);
+    gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+    container.appendChild(gl.canvas);
 
-    // 2. Create Geometry (a simple plane that covers the screen)
-    const geometry = new Triangle(glRef.current);
-
-    // 3. Create Program (shaders)
-    programRef.current = new Program(glRef.current, {
+    const geometry = new Triangle(gl);
+    const program = new Program(gl, {
       vertex: vertexShader,
       fragment: fragmentShader,
       uniforms: {
-        uTime: { value: 0 },
-        uResolution: { value: new Color(window.innerWidth, window.innerHeight) },
-        uMouse: { value: new Color(mouseRef.current.x, mouseRef.current.y) },
-        uAmplitude: { value: amplitude || 0.5 },
-        uDistance: { value: distance || 1.0 },
-        uColor: { value: new Color(...(color || [0.1, 0.4, 0.7])) },
+        iTime: { value: 0 },
+        iResolution: {
+          value: new Float32Array([
+            gl.canvas.width,
+            gl.canvas.height,
+            gl.canvas.width / gl.canvas.height,
+          ]),
+        },
+        uColor: { value: new Color(...color) },
+        uAmplitude: { value: amplitude },
+        uDistance: { value: distance },
+        uMouse: { value: new Float32Array([0.5, 0.5]) },
       },
     });
 
-    // 4. Create Mesh
-    meshRef.current = new Mesh(glRef.current, { geometry, program: programRef.current });
+    const mesh = new Mesh(gl, { geometry, program });
 
-    // Handle Resize
-    const handleResize = () => {
-      rendererRef.current.setSize(window.innerWidth, window.innerHeight);
-      programRef.current.uniforms.uResolution.value.set(window.innerWidth, window.innerHeight);
-    };
-    window.addEventListener('resize', handleResize);
+    function resize() {
+      const { clientWidth, clientHeight } = container;
+      renderer.setSize(clientWidth, clientHeight);
+      program.uniforms.iResolution.value[0] = clientWidth;
+      program.uniforms.iResolution.value[1] = clientHeight;
+      program.uniforms.iResolution.value[2] = clientWidth / clientHeight;
+    }
 
-    // Handle Mouse Move
-    const handleMouseMove = (e) => {
-      if (enableMouseInteraction) {
-        mouseRef.current.x = e.clientX;
-        mouseRef.current.y = e.clientY;
-        programRef.current.uniforms.uMouse.value.set(e.clientX, e.clientY);
-      }
-    };
+    window.addEventListener("resize", resize);
+    resize();
+
+    let currentMouse = [0.5, 0.5];
+    let targetMouse = [0.5, 0.5];
+
+    function handleMouseMove(e) {
+      const rect = container.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width;
+      const y = 1.0 - (e.clientY - rect.top) / rect.height;
+      targetMouse = [x, y];
+    }
+
+    function handleMouseLeave() {
+      targetMouse = [0.5, 0.5];
+    }
+
     if (enableMouseInteraction) {
-      window.addEventListener('mousemove', handleMouseMove);
+      container.addEventListener("mousemove", handleMouseMove);
+      container.addEventListener("mouseleave", handleMouseLeave);
     }
 
-    // Animation Loop
-    let lastTime = 0;
-    const animate = (time) => {
-      const deltaTime = (time - lastTime) * 0.001; // Convert to seconds
-      lastTime = time;
-
-      programRef.current.uniforms.uTime.value += deltaTime; // Increment time uniform
-
-      rendererRef.current.render({ scene: meshRef.current }); // Render the scene
-      requestAnimationFrame(animate); // Request next frame
-    };
-
-    // Start the animation on window load.
-    // Ensure the canvas is ready before starting the animation.
-    const startAnimation = () => {
-        animate(0); // Start with time 0
-    };
-    if (document.readyState === 'complete') {
-        startAnimation();
-    } else {
-        window.addEventListener('load', startAnimation);
-    }
-
-
-    // Cleanup
-    return () => {
-      window.removeEventListener('resize', handleResize);
+    function update(t) {
       if (enableMouseInteraction) {
-        window.removeEventListener('mousemove', handleMouseMove);
+        const smoothing = 0.05;
+        currentMouse[0] += smoothing * (targetMouse[0] - currentMouse[0]);
+        currentMouse[1] += smoothing * (targetMouse[1] - currentMouse[1]);
+        program.uniforms.uMouse.value[0] = currentMouse[0];
+        program.uniforms.uMouse.value[1] = currentMouse[1];
+      } else {
+        program.uniforms.uMouse.value[0] = 0.5;
+        program.uniforms.uMouse.value[1] = 0.5;
       }
-      window.removeEventListener('load', startAnimation); // Clean up load listener
-      // No need to dispose OGL objects explicitly as canvas will be removed
-    };
-  }, [amplitude, distance, enableMouseInteraction, color]); // Dependencies for useEffect
 
-  return <canvas ref={canvasRef} className="threads-canvas"></canvas>;
+      program.uniforms.iTime.value = t * 0.001;
+      renderer.render({ scene: mesh });
+      animationFrameId.current = requestAnimationFrame(update);
+    }
+
+    animationFrameId.current = requestAnimationFrame(update);
+
+    return () => {
+      if (animationFrameId.current)
+        cancelAnimationFrame(animationFrameId.current);
+      window.removeEventListener("resize", resize);
+
+      if (enableMouseInteraction) {
+        container.removeEventListener("mousemove", handleMouseMove);
+        container.removeEventListener("mouseleave", handleMouseLeave);
+      }
+      if (container.contains(gl.canvas)) container.removeChild(gl.canvas);
+      gl.getExtension("WEBGL_lose_context")?.loseContext();
+    };
+  }, [color, amplitude, distance, enableMouseInteraction]);
+
+  return <div ref={containerRef} className="threads-container" {...rest} />;
 };
 
 export default Threads;

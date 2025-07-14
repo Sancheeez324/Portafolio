@@ -1,11 +1,12 @@
 // src/App.jsx
 import React, { useState, useEffect } from 'react';
-import './index.css'; // El CSS principal sigue aquí
+import './index.css';
 
 // Importaciones de componentes comunes
 import Threads from './components/common/Threads.jsx';
 import SplitText from './components/common/SplitText.jsx';
 import TypewriterEffect from './components/common/TypewriterEffect.jsx';
+import BlurText from './components/common/BlurText.jsx';
 
 // Importación del componente de layout
 import Header from './components/layout/Header.jsx';
@@ -13,6 +14,7 @@ import Header from './components/layout/Header.jsx';
 // Importaciones de componentes de sección
 import AboutMe from './components/sections/AboutMe/AboutMe.jsx';
 import Experience from './components/sections/Experience/Experience.jsx';
+import Certificates from './components/sections/Certificates/Certificates.jsx'; // <-- ¡NUEVA IMPORTACIÓN!
 import Projects from './components/sections/Projects/Projects.jsx';
 import Contact from './components/sections/Contact/Contact.jsx';
 
@@ -27,7 +29,7 @@ function App() {
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' }); // Desplazamiento suave
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -85,6 +87,7 @@ function App() {
       {/* Secciones del portafolio */}
       <AboutMe />
       <Experience />
+      <Certificates /> {/* <-- ¡NUEVA SECCIÓN DE CERTIFICADOS AQUI! */}
       <Projects />
       <Contact />
 

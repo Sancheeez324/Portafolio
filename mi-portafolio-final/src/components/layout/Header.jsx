@@ -32,6 +32,12 @@ const Header = ({ scrollToSection }) => {
           Trayectoria
         </button>
         <button
+          onClick={() => scrollToSection('certificados')} 
+          className="text-white hover:text-blue-400 transition-colors duration-300 text-lg font-medium rounded-md px-3 py-2 hover:bg-gray-800"
+        >
+          Certificados
+        </button>
+        <button
           onClick={() => scrollToSection('proyectos')}
           className="text-white hover:text-blue-400 transition-colors duration-300 text-lg font-medium rounded-md px-3 py-2 hover:bg-gray-800"
         >
