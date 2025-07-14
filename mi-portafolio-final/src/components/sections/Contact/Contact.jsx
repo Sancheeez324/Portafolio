@@ -1,10 +1,10 @@
-// src/components/Contact.jsx
+// src/components/sections/Contact/Contact.jsx
 import React, { useState } from 'react';
 import { Mail, MapPin, Linkedin } from 'lucide-react';
-import BlurText from './BlurText.jsx'; // <-- ¡IMPORTACIÓN DE BLURTEXT!
+import BlurText from '../../common/BlurText.jsx'; // <-- RUTA ACTUALIZADA
 
 // Importa tu foto personal
-import myPhoto from '../assets/FotoYo/yo.jpg';
+import myPhoto from '../../../assets/FotoYo/yo.jpg'; // <-- RUTA ACTUALIZADA
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -13,7 +13,7 @@ const Contact = () => {
     subject: '',
     message: '',
   });
-  const [submissionStatus, setSubmissionStatus] = useState(null); // 'success', 'error', 'sending'
+  const [submissionStatus, setSubmissionStatus] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,7 +41,7 @@ const Contact = () => {
       <BlurText
         text="Contacto"
         className="text-5xl md:text-7xl font-bold mb-12"
-        delay={100} // Ajusta el delay para el efecto de aparición
+        delay={100}
         animateBy="words"
         direction="top"
       />

@@ -1,7 +1,13 @@
-// src/components/Projects.jsx
+// src/components/sections/Projects/Projects.jsx
 import React from 'react';
 // Importa íconos de Lucide React para los proyectos (ej. para enlaces a GitHub, demo)
 import { Github, ExternalLink } from 'lucide-react';
+
+// Importa las imágenes locales de tus proyectos
+import portafolioImage from '../../../assets/Proyectos/portafolio.png';
+import riseOfHeroesImage from '../../../assets/Proyectos/rise_of_heroes.jpg';
+import worldMapsImage from '../../../assets/Proyectos/world_maps.png';
+
 
 const Projects = () => {
   // Array de proyectos de ejemplo
@@ -10,35 +16,34 @@ const Projects = () => {
       title: 'Proyecto de Portafolio Personal',
       description: 'Desarrollo de un portafolio web interactivo utilizando React, Vite y Tailwind CSS, con animaciones de texto y fondo dinámico.',
       technologies: ['React', 'Vite', 'Tailwind CSS', 'GSAP', 'Ogl'],
-      githubLink: 'https://github.com/Sancheeez324/mi-portafolio-personal', // <-- ¡CAMBIA ESTO POR EL LINK REAL DE TU PORTAFOLIO EN GITHUB!
-      demoLink: '#', // Si tienes un deploy, ¡cambia esto!
-      image: 'https://placehold.co/400x250/0d1117/e6edf3?text=Tu+Portafolio', // Placeholder de imagen
+      githubLink: 'https://github.com/Sancheeez324/Portafolio', // Enlace actualizado
+      demoLink: '#',
+      image: portafolioImage,
     },
     {
       title: 'Sistema de Evaluación de Riesgos Laborales (Simotec)',
       description: 'Desarrollo de un sistema web con backend serverless (AWS Lambda, Node.js) y frontend SPA (React con Vite) para evaluaciones psicológicas y simulaciones VR.',
       technologies: ['React', 'Vite', 'Node.js', 'AWS Lambda', 'AWS RDS', 'MySQL', 'JWT'],
-      githubLink: 'https://github.com/Sancheeez324/simotec-project-public', // <-- ¡CAMBIA ESTO POR EL LINK REAL DE SIMOTEC EN GITHUB!
-      demoLink: '#', // Si tienes un deploy, ¡cambia esto!
-      image: 'https://placehold.co/400x250/0d1117/e6edf3?text=Simotec', // Placeholder de imagen
+      githubLink: 'https://github.com/Sancheeez324/Proyecto-SIMOTEC', // Enlace actualizado
+      demoLink: '#',
+      image: 'https://placehold.co/400x250/0d1117/e6edf3?text=Simotec', // Placeholder de imagen (Si tienes una imagen de Simotec, cámbiala aquí)
     },
     {
       title: 'Videojuego 3D: Rise of Heroes',
       description: 'Proyecto de título para el desarrollo de un videojuego 3D educativo sobre la guerra del Pacífico, utilizando Unity/C# y diseño 3D en Blender.',
       technologies: ['Unity', 'C#', 'Blender', 'Game Development'],
-      githubLink: null, // <-- ¡ENLACE DE GITHUB ELIMINADO PARA ESTE PROYECTO!
+      githubLink: null,
       demoLink: '#', // Puedes poner un enlace a un video de YouTube (no listado) aquí si lo deseas.
-      image: 'https://placehold.co/400x250/0d1117/e6edf3?text=Rise+of+Heroes+Game', // <-- ¡REEMPLAZA ESTA IMAGEN POR UN SCREENSHOT REAL DEL JUEGO!
+      image: riseOfHeroesImage,
     },
     {
       title: 'App de Mapas Históricos Interactivos',
       description: 'Aplicación web educativa desarrollada con React, que permite explorar civilizaciones históricas de distintos continentes a través de una interfaz visual, interactiva y multilingüe. Diseñada como herramienta didáctica para estudiantes de enseñanza básica y media.',
       technologies: ['React', 'Vite', 'CSS', 'JavaScript', 'HTML', 'Despliegue'],
-      githubLink: 'https://github.com/Sancheeez324/world-history-maps', // <-- ¡LINK DE GITHUB PARA ESTE PROYECTO!
-      demoLink: '#', // Si tienes un deploy, ¡cambia esto!
-      image: 'https://placehold.co/400x250/0d1117/e6edf3?text=World+History+Maps', // Placeholder de imagen
+      githubLink: 'https://github.com/Sancheeez324/world_history_maps_react', // Enlace actualizado
+      demoLink: '#',
+      image: worldMapsImage,
     },
-    // Puedes añadir más proyectos aquí
   ];
 
   return (

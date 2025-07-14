@@ -1,4 +1,4 @@
-// src/components/BlurText.jsx
+// src/components/common/BlurText.jsx
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState, useMemo } from 'react';
 

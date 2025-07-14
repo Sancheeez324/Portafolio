@@ -1,14 +1,14 @@
-// src/components/AboutMe.jsx
+// src/components/sections/AboutMe/AboutMe.jsx
 import React, { useState } from 'react';
 import { User, Target, Briefcase } from 'lucide-react';
-import BlurText from './BlurText.jsx'; // <-- ¡IMPORTACIÓN DE BLURTEXT!
+import BlurText from '../../common/BlurText.jsx'; // <-- RUTA ACTUALIZADA
 
 // Importa tu foto personal
-import myPhoto from '../assets/FotoYo/yo.jpg';
+import myPhoto from '../../../assets/FotoYo/yo.jpg'; // <-- RUTA ACTUALIZADA
 
 // Importa tus imágenes locales aquí para las herramientas
-import awsLambdaIcon from '../assets/FotosHerramientas/amazon_lambda.png';
-import awsRdsIcon from '../assets/FotosHerramientas/amazon_aurora.png';
+import awsLambdaIcon from '../../../assets/FotosHerramientas/amazon_lambda.png'; // <-- RUTA ACTUALIZADA
+import awsRdsIcon from '../../../assets/FotosHerramientas/amazon_aurora.png';     // <-- RUTA ACTUALIZADA
 
 const AboutMe = () => {
   const initialSkills = [
@@ -50,19 +50,11 @@ const AboutMe = () => {
       <BlurText
         text="Sobre Mí"
         className="text-5xl md:text-7xl font-bold mb-12"
-        delay={100} // Ajusta el delay para el efecto de aparición
+        delay={100}
         animateBy="words"
         direction="top"
       />
 
-      {/* Tu foto personal (removida de aquí, si estaba, para que solo esté en Contact.jsx) */}
-      {/* <img
-        src={myPhoto}
-        alt="Pablo Sánchez"
-        className="w-48 h-48 rounded-full object-cover mb-8 shadow-lg border-4 border-blue-400 transform hover:scale-110 transition-transform duration-300"
-      /> */}
-
-      {/* Contenedor de las tarjetas */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full mb-16">
         <div className="bg-gray-800 bg-opacity-70 p-8 rounded-lg shadow-xl flex flex-col items-center text-left transform hover:scale-105 transition-transform duration-300">
           <User size={48} className="text-blue-400 mb-4" />

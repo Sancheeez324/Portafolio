@@ -1,15 +1,20 @@
 // src/App.jsx
 import React, { useState, useEffect } from 'react';
-import './index.css';
-import Threads from './components/Threads.jsx';
-import SplitText from './components/SplitText.jsx';
-import TypewriterEffect from './components/TypewriterEffect.jsx';
-import Header from './components/Header.jsx';
-import AboutMe from './components/AboutMe.jsx';
-import Experience from './components/Experience.jsx';
-import Projects from './components/Projects.jsx';
-import Contact from './components/Contact.jsx';
-import BlurText from './components/BlurText.jsx'; // <-- ¡NUEVA IMPORTACIÓN: Componente BlurText!
+import './index.css'; // El CSS principal sigue aquí
+
+// Importaciones de componentes comunes
+import Threads from './components/common/Threads.jsx';
+import SplitText from './components/common/SplitText.jsx';
+import TypewriterEffect from './components/common/TypewriterEffect.jsx';
+
+// Importación del componente de layout
+import Header from './components/layout/Header.jsx';
+
+// Importaciones de componentes de sección
+import AboutMe from './components/sections/AboutMe/AboutMe.jsx';
+import Experience from './components/sections/Experience/Experience.jsx';
+import Projects from './components/sections/Projects/Projects.jsx';
+import Contact from './components/sections/Contact/Contact.jsx';
 
 function App() {
   const professionText = "Ingeniero Informático/Desarrollador Full-Stack";
@@ -18,10 +23,11 @@ function App() {
     console.log('El título principal ha terminado de animarse!');
   };
 
+  // Función para desplazamiento suave a una sección específica de la página.
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: 'smooth' }); // Desplazamiento suave
     }
   };
 
@@ -30,7 +36,7 @@ function App() {
       {/* Componente Header con enlaces de navegación. */}
       <Header scrollToSection={scrollToSection} />
 
-      {/* Contenedor para el fondo animado (Threads). Se fija a la pantalla completa. */}
+      {/* Contenedor para el fondo animado (Threads). */}
       <div style={{
         position: 'fixed',
         top: 0,
@@ -76,19 +82,10 @@ function App() {
         />
       </section>
 
-      {/* Sección Sobre Mí */}
-      <AboutMe /> {/* El título "Sobre Mí" se moverá dentro de AboutMe.jsx si lo quieres animado */}
-      {/* Si quieres animar los títulos de las secciones, el h2 debe estar DENTRO del componente */}
-      {/* Por ejemplo, en AboutMe.jsx, Experience.jsx, Projects.jsx y Contact.jsx */}
-      {/* Haré los cambios en esos componentes directamente para que el BlurText se aplique a sus títulos */}
-
-      {/* Sección Trayectoria */}
+      {/* Secciones del portafolio */}
+      <AboutMe />
       <Experience />
-
-      {/* Sección Proyectos */}
       <Projects />
-
-      {/* Sección Contacto */}
       <Contact />
 
     </div>

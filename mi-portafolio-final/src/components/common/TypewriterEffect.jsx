@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 const TypewriterEffect = ({
-  phrases = [], // Array de frases a escribir y borrar (ej: ["Ingeniero Informático", "Desarrollador Full-Stack"])
+  phrases = [], // Array de frases a escribir y borrar)
   typingSpeed = 100, // Velocidad de escritura (ms por caracter)
   deletingSpeed = 50, // Velocidad de borrado (ms por caracter)
   pauseBetween = 1500, // Pausa entre frases (ms)

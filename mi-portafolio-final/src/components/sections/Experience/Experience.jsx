@@ -1,14 +1,14 @@
-// src/components/Experience.jsx
+// src/components/sections/Experience/Experience.jsx
 import React, { useState } from 'react';
 import { GraduationCap, Briefcase, Award } from 'lucide-react';
-import BlurText from './BlurText.jsx'; // <-- ¡IMPORTACIÓN DE BLURTEXT!
+import BlurText from '../../common/BlurText.jsx'; // <-- RUTA ACTUALIZADA
 
-// Importa tus imágenes locales aquí para las universidades y empresas
-import uaiLogo from '../assets/FotosUs_Empresas/uai.jpg';
-import pucvLogo from '../assets/FotosUs_Empresas/pucv.png';
-import imgOnlineLogo from '../assets/FotosUs_Empresas/IMGOnline.jpg';
-import simotecLogo from '../assets/FotosUs_Empresas/simotec.jpg';
-import unityLogo from '../assets/FotosUs_Empresas/unity.png';
+
+import uaiLogo from '../../../assets/FotosUs_Empresas/uai.jpg'; 
+import pucvLogo from '../../../assets/FotosUs_Empresas/pucv.png'; 
+import imgOnlineLogo from '../../../assets/FotosUs_Empresas/IMGOnline.jpg'; 
+import simotecLogo from '../../../assets/FotosUs_Empresas/simotec.jpg'; 
+import unityLogo from '../../../assets/FotosUs_Empresas/unity.png'; 
 
 
 const Experience = () => {
@@ -94,7 +94,7 @@ const Experience = () => {
       <BlurText
         text="Trayectoria"
         className="text-5xl md:text-7xl font-bold mb-12"
-        delay={100} // Ajusta el delay para el efecto de aparición
+        delay={100}
         animateBy="words"
         direction="top"
       />
