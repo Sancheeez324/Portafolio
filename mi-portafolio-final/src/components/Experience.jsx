@@ -1,7 +1,17 @@
 // src/components/Experience.jsx
-import React, { useState } from 'react'; // Importa useState para manejar el estado de carga de los logos
+import React, { useState } from 'react';
 // Importa íconos de Lucide React para los encabezados de sección
 import { GraduationCap, Briefcase, Award } from 'lucide-react';
+
+// Importa tus imágenes locales aquí para las universidades y empresas
+// ¡Asegúrate de que los nombres de los archivos y las extensiones coincidan con los que descargaste!
+import uaiLogo from '../assets/FotosUs_Empresas/uai.jpg';
+import pucvLogo from '../assets/FotosUs_Empresas/pucv.png';
+import imgOnlineLogo from '../assets/FotosUs_Empresas/IMGOnline.jpg';
+import simotecLogo from '../assets/FotosUs_Empresas/simotec.jpg';
+// ¡RUTA ACTUALIZADA PARA EL LOGO DE UNITY!
+import unityLogo from '../assets/FotosUs_Empresas/unity.png'; // <-- ¡RUTA CORREGIDA AQUÍ!
+
 
 const Experience = () => {
   // Datos de la trayectoria, combinando académica, profesional y otros para la línea de tiempo
@@ -13,7 +23,7 @@ const Experience = () => {
       date: '2019 | Viña del Mar',
       description: [],
       icon: <Award size={28} />,
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Logo_UAI.svg/1200px-Logo_UAI.svg.png', // Logo UAI
+      logo: uaiLogo, // Logo UAI local
     },
     {
       type: 'academic',
@@ -25,7 +35,7 @@ const Experience = () => {
         'Presidente centro de alumnos de informática | 2022-2024',
       ],
       icon: <GraduationCap size={28} />,
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Logo_PUCV.svg/1200px-Logo_PUCV.svg.png', // Logo PUCV
+      logo: pucvLogo, // Logo PUCV local
     },
     {
       type: 'professional',
@@ -40,7 +50,7 @@ const Experience = () => {
         'Uso avanzado de Excel.',
       ],
       icon: <Briefcase size={28} />,
-      logo: 'https://placehold.co/60x60/000000/FFFFFF?text=IMG', // Placeholder para IMG Online SPA (si tienes el logo, cámbialo)
+      logo: imgOnlineLogo, // Logo IMG Online SPA local
     },
     {
       type: 'professional',
@@ -52,7 +62,7 @@ const Experience = () => {
         'Diseño 3D en blender.',
       ],
       icon: <Briefcase size={28} />,
-      logo: 'https://placehold.co/60x60/000000/FFFFFF?text=Juego', // Placeholder para el logo del juego (si tienes uno, cámbialo)
+      logo: unityLogo, // <-- ¡LOGO DE UNITY AÑADIDO AQUÍ!
     },
     {
       type: 'professional',
@@ -67,7 +77,7 @@ const Experience = () => {
         'Conexión y despliegue de la base de datos desde MySQL Workbench a la nube.',
       ],
       icon: <Briefcase size={28} />,
-      logo: 'https://simotec.cl/wp-content/uploads/2020/08/logo-simotec.png', // Logo Simotec
+      logo: simotecLogo, // Logo Simotec local
     },
   ];
 
