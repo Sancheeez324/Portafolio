@@ -1,14 +1,14 @@
 // src/components/sections/Experience/Experience.jsx
 import React, { useState } from 'react';
 import { GraduationCap, Briefcase, Award } from 'lucide-react';
-import BlurText from '../../common/BlurText.jsx'; // <-- RUTA ACTUALIZADA
+import BlurText from '../../common/BlurText.jsx'; 
 
 
 import uaiLogo from '../../../assets/FotosUs_Empresas/uai.jpg'; 
 import pucvLogo from '../../../assets/FotosUs_Empresas/pucv.png'; 
 import imgOnlineLogo from '../../../assets/FotosUs_Empresas/IMGOnline.jpg'; 
 import simotecLogo from '../../../assets/FotosUs_Empresas/simotec.jpg'; 
-import unityLogo from '../../../assets/FotosUs_Empresas/unity.png'; 
+import unityLogo from '../../../assets/FotosUs_Empresas/Unity.png'; 
 
 
 const Experience = () => {
