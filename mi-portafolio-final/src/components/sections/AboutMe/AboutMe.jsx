@@ -1,14 +1,13 @@
 // src/components/sections/AboutMe/AboutMe.jsx
 import React, { useState } from 'react';
 import { User, Target, Briefcase } from 'lucide-react';
-import BlurText from '../../common/BlurText.jsx'; // <-- RUTA ACTUALIZADA
+import BlurText from '../../common/BlurText.jsx'; 
 
-// Importa tu foto personal
-import myPhoto from '../../../assets/FotoYo/yo.jpg'; // <-- RUTA ACTUALIZADA
+import myPhoto from '../../../assets/FotoYo/yo.jpg'; 
 
 // Importa tus imágenes locales aquí para las herramientas
-import awsLambdaIcon from '../../../assets/FotosHerramientas/amazon_lambda.png'; // <-- RUTA ACTUALIZADA
-import awsRdsIcon from '../../../assets/FotosHerramientas/amazon_aurora.png';     // <-- RUTA ACTUALIZADA
+import awsLambdaIcon from '../../../assets/FotosHerramientas/amazon_lambda.png'; 
+import awsRdsIcon from '../../../assets/FotosHerramientas/amazon_aurora.png';     
 
 const AboutMe = () => {
   const initialSkills = [

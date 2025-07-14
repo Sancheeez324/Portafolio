@@ -14,7 +14,7 @@ import Header from './components/layout/Header.jsx';
 // Importaciones de componentes de sección
 import AboutMe from './components/sections/AboutMe/AboutMe.jsx';
 import Experience from './components/sections/Experience/Experience.jsx';
-import Certificates from './components/sections/Certificates/Certificates.jsx'; // <-- ¡NUEVA IMPORTACIÓN!
+import Certificates from './components/sections/Certificates/Certificates.jsx'; 
 import Projects from './components/sections/Projects/Projects.jsx';
 import Contact from './components/sections/Contact/Contact.jsx';
 
@@ -87,7 +87,7 @@ function App() {
       {/* Secciones del portafolio */}
       <AboutMe />
       <Experience />
-      <Certificates /> {/* <-- ¡NUEVA SECCIÓN DE CERTIFICADOS AQUI! */}
+      <Certificates /> 
       <Projects />
       <Contact />
 

@@ -44,7 +44,6 @@ html, body {
 }
 
 /* Para Firefox (experimental, puede que no funcione en todas las versiones) */
-/* Puedes probar si lo necesitas */
 /*
 html {
   scrollbar-width: none;
