@@ -1,40 +1,11 @@
 // src/components/sections/Contact/Contact.jsx
-import React, { useState } from 'react';
+import React from 'react'; // Ya no necesitamos useState si Formspree maneja todo directamente
 import { Mail, MapPin, Linkedin } from 'lucide-react';
-import BlurText from '../../common/BlurText.jsx'; // <-- RUTA ACTUALIZADA
+import BlurText from '../../common/BlurText.jsx';
 
-// Importa tu foto personal
-import myPhoto from '../../../assets/FotoYo/yo.jpg'; // <-- RUTA ACTUALIZADA
+import myPhoto from '../../../assets/FotoYo/yo.jpg';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  });
-  const [submissionStatus, setSubmissionStatus] = useState(null);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setSubmissionStatus('sending');
-
-    // --- SIMULACIÓN DE ENVÍO EXITOSO (ELIMINA ESTO CUANDO USES UN SERVICIO REAL) ---
-    console.log('Formulario enviado (simulado para servicio de terceros):', formData);
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    setSubmissionStatus('success');
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    // --- FIN DE SIMULACIÓN ---
-  };
-
   return (
     <section id="contacto" className="min-h-screen flex flex-col justify-center items-center bg-transparent text-white text-center p-12 relative z-10">
       {/* Título de la sección con BlurText */}
@@ -89,7 +60,8 @@ const Contact = () => {
         {/* Formulario de Contacto */}
         <div className="md:w-1/2 bg-gray-800 bg-opacity-70 p-8 rounded-lg shadow-xl text-left">
           <h3 className="text-3xl font-semibold mb-6 text-blue-300">Envíame un Mensaje</h3>
-          <form onSubmit={handleSubmit} className="space-y-6">
+         
+          <form action="https://formspree.io/f/mwpqedbv" method="POST" className="space-y-6">
             <div>
               <label htmlFor="name" className="block text-lg font-medium text-gray-200 mb-2">
                 Nombre
@@ -97,9 +69,7 @@ const Contact = () => {
               <input
                 type="text"
                 id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
+                name="name" // ¡IMPORTANTE! El atributo 'name' es crucial para Formspree
                 className="w-full p-3 rounded-md bg-gray-700 text-white border border-gray-600 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
                 required
               />
@@ -111,9 +81,7 @@ const Contact = () => {
               <input
                 type="email"
                 id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
+                name="_replyto" // ¡IMPORTANTE! Usa '_replyto' para que Formspree use este email como remitente
                 className="w-full p-3 rounded-md bg-gray-700 text-white border border-gray-600 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
                 required
               />
@@ -125,9 +93,7 @@ const Contact = () => {
               <input
                 type="text"
                 id="subject"
-                name="subject"
-                value={formData.subject}
-                onChange={handleChange}
+                name="subject" // ¡IMPORTANTE! El atributo 'name' es crucial para Formspree
                 className="w-full p-3 rounded-md bg-gray-700 text-white border border-gray-600 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
                 required
               />
@@ -138,9 +104,7 @@ const Contact = () => {
               </label>
               <textarea
                 id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
+                name="message" // ¡IMPORTANTE! El atributo 'name' es crucial para Formspree
                 rows="5"
                 className="w-full p-3 rounded-md bg-gray-700 text-white border border-gray-600 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
                 required
@@ -148,20 +112,15 @@ const Contact = () => {
             </div>
             <button
               type="submit"
-              className={`w-full bg-blue-600 text-white py-3 px-6 rounded-md font-semibold transition-colors duration-300 shadow-lg transform hover:scale-105
-                ${submissionStatus === 'sending' ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-700'}`}
-              disabled={submissionStatus === 'sending'}
+              className="w-full bg-blue-600 text-white py-3 px-6 rounded-md font-semibold transition-colors duration-300 shadow-lg transform hover:scale-105 hover:bg-blue-700"
             >
-              {submissionStatus === 'sending' ? 'Enviando...' : 'Enviar Mensaje'}
+              Enviar Mensaje
             </button>
 
-            {/* Mensajes de estado de envío */}
-            {submissionStatus === 'success' && (
-              <p className="text-green-400 mt-4">¡Mensaje enviado con éxito!</p>
-            )}
-            {submissionStatus === 'error' && (
-              <p className="text-red-400 mt-4">Error al enviar el mensaje. Por favor, inténtalo de nuevo.</p>
-            )}
+            {/* Estos mensajes de estado ya no se mostrarán con Formspree directo,
+                Formspree redirige a una página de éxito o error. */}
+            {/* {submissionStatus === 'success' && ( ... )} */}
+            {/* {submissionStatus === 'error' && ( ... )} */}
           </form>
         </div>
       </div>
