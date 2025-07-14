@@ -10,25 +10,33 @@ const Projects = () => {
       title: 'Proyecto de Portafolio Personal',
       description: 'Desarrollo de un portafolio web interactivo utilizando React, Vite y Tailwind CSS, con animaciones de texto y fondo dinámico.',
       technologies: ['React', 'Vite', 'Tailwind CSS', 'GSAP', 'Ogl'],
-      githubLink: 'https://github.com/tu-usuario/tu-repo-portafolio', // ¡Cambia esto!
+      githubLink: 'https://github.com/Sancheeez324/mi-portafolio-personal', // <-- ¡CAMBIA ESTO POR EL LINK REAL DE TU PORTAFOLIO EN GITHUB!
       demoLink: '#', // Si tienes un deploy, ¡cambia esto!
-      image: 'https://placehold.co/400x250/0d1117/e6edf3?text=Portafolio', // Placeholder de imagen
+      image: 'https://placehold.co/400x250/0d1117/e6edf3?text=Tu+Portafolio', // Placeholder de imagen
     },
     {
       title: 'Sistema de Evaluación de Riesgos Laborales (Simotec)',
       description: 'Desarrollo de un sistema web con backend serverless (AWS Lambda, Node.js) y frontend SPA (React con Vite) para evaluaciones psicológicas y simulaciones VR.',
       technologies: ['React', 'Vite', 'Node.js', 'AWS Lambda', 'AWS RDS', 'MySQL', 'JWT'],
-      githubLink: 'https://github.com/tu-usuario/simotec-project', // ¡Cambia esto!
-      demoLink: '#',
+      githubLink: 'https://github.com/Sancheeez324/simotec-project-public', // <-- ¡CAMBIA ESTO POR EL LINK REAL DE SIMOTEC EN GITHUB!
+      demoLink: '#', // Si tienes un deploy, ¡cambia esto!
       image: 'https://placehold.co/400x250/0d1117/e6edf3?text=Simotec', // Placeholder de imagen
     },
     {
       title: 'Videojuego 3D: Rise of Heroes',
       description: 'Proyecto de título para el desarrollo de un videojuego 3D educativo sobre la guerra del Pacífico, utilizando Unity/C# y diseño 3D en Blender.',
       technologies: ['Unity', 'C#', 'Blender', 'Game Development'],
-      githubLink: 'https://github.com/tu-usuario/rise-of-heroes', // ¡Cambia esto!
-      demoLink: '#',
-      image: 'https://placehold.co/400x250/0d1117/e6edf3?text=Rise+of+Heroes', // Placeholder de imagen
+      githubLink: null, // <-- ¡ENLACE DE GITHUB ELIMINADO PARA ESTE PROYECTO!
+      demoLink: '#', // Puedes poner un enlace a un video de YouTube (no listado) aquí si lo deseas.
+      image: 'https://placehold.co/400x250/0d1117/e6edf3?text=Rise+of+Heroes+Game', // <-- ¡REEMPLAZA ESTA IMAGEN POR UN SCREENSHOT REAL DEL JUEGO!
+    },
+    {
+      title: 'App de Mapas Históricos Interactivos',
+      description: 'Aplicación web educativa desarrollada con React, que permite explorar civilizaciones históricas de distintos continentes a través de una interfaz visual, interactiva y multilingüe. Diseñada como herramienta didáctica para estudiantes de enseñanza básica y media.',
+      technologies: ['React', 'Vite', 'CSS', 'JavaScript', 'HTML', 'Despliegue'],
+      githubLink: 'https://github.com/Sancheeez324/world-history-maps', // <-- ¡LINK DE GITHUB PARA ESTE PROYECTO!
+      demoLink: '#', // Si tienes un deploy, ¡cambia esto!
+      image: 'https://placehold.co/400x250/0d1117/e6edf3?text=World+History+Maps', // Placeholder de imagen
     },
     // Puedes añadir más proyectos aquí
   ];
@@ -63,7 +71,7 @@ const Projects = () => {
             </div>
             {/* Enlaces a GitHub y Demo */}
             <div className="flex justify-center space-x-4 mt-auto">
-              {project.githubLink && (
+              {project.githubLink && ( // Solo muestra el botón si githubLink existe
                 <a
                   href={project.githubLink}
                   target="_blank"
@@ -75,7 +83,7 @@ const Projects = () => {
                   GitHub
                 </a>
               )}
-              {project.demoLink && project.demoLink !== '#' && (
+              {project.demoLink && project.demoLink !== '#' && ( // Solo muestra el botón si demoLink existe y no es '#'
                 <a
                   href={project.demoLink}
                   target="_blank"

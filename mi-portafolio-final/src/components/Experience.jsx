@@ -1,20 +1,17 @@
 // src/components/Experience.jsx
 import React, { useState } from 'react';
-// Importa íconos de Lucide React para los encabezados de sección
 import { GraduationCap, Briefcase, Award } from 'lucide-react';
+import BlurText from './BlurText.jsx'; // <-- ¡IMPORTACIÓN DE BLURTEXT!
 
 // Importa tus imágenes locales aquí para las universidades y empresas
-// ¡Asegúrate de que los nombres de los archivos y las extensiones coincidan con los que descargaste!
 import uaiLogo from '../assets/FotosUs_Empresas/uai.jpg';
 import pucvLogo from '../assets/FotosUs_Empresas/pucv.png';
 import imgOnlineLogo from '../assets/FotosUs_Empresas/IMGOnline.jpg';
 import simotecLogo from '../assets/FotosUs_Empresas/simotec.jpg';
-// ¡RUTA ACTUALIZADA PARA EL LOGO DE UNITY!
-import unityLogo from '../assets/FotosUs_Empresas/unity.png'; // <-- ¡RUTA CORREGIDA AQUÍ!
+import unityLogo from '../assets/FotosUs_Empresas/unity.png';
 
 
 const Experience = () => {
-  // Datos de la trayectoria, combinando académica, profesional y otros para la línea de tiempo
   const initialTimelineEvents = [
     {
       type: 'other',
@@ -23,7 +20,7 @@ const Experience = () => {
       date: '2019 | Viña del Mar',
       description: [],
       icon: <Award size={28} />,
-      logo: uaiLogo, // Logo UAI local
+      logo: uaiLogo,
     },
     {
       type: 'academic',
@@ -35,7 +32,7 @@ const Experience = () => {
         'Presidente centro de alumnos de informática | 2022-2024',
       ],
       icon: <GraduationCap size={28} />,
-      logo: pucvLogo, // Logo PUCV local
+      logo: pucvLogo,
     },
     {
       type: 'professional',
@@ -50,7 +47,7 @@ const Experience = () => {
         'Uso avanzado de Excel.',
       ],
       icon: <Briefcase size={28} />,
-      logo: imgOnlineLogo, // Logo IMG Online SPA local
+      logo: imgOnlineLogo,
     },
     {
       type: 'professional',
@@ -62,7 +59,7 @@ const Experience = () => {
         'Diseño 3D en blender.',
       ],
       icon: <Briefcase size={28} />,
-      logo: unityLogo, // <-- ¡LOGO DE UNITY AÑADIDO AQUÍ!
+      logo: unityLogo,
     },
     {
       type: 'professional',
@@ -77,14 +74,12 @@ const Experience = () => {
         'Conexión y despliegue de la base de datos desde MySQL Workbench a la nube.',
       ],
       icon: <Briefcase size={28} />,
-      logo: simotecLogo, // Logo Simotec local
+      logo: simotecLogo,
     },
   ];
 
-  // Estado para manejar si el logo se cargó o no
   const [timelineEventsWithLoadStatus, setTimelineEventsWithLoadStatus] = useState(initialTimelineEvents.map(event => ({ ...event, logoLoaded: true })));
 
-  // Función para manejar el error de carga de la imagen del logo
   const handleLogoError = (index) => {
     setTimelineEventsWithLoadStatus(prevEvents =>
       prevEvents.map((event, i) =>
@@ -95,26 +90,30 @@ const Experience = () => {
 
   return (
     <section id="trayectoria" className="min-h-screen flex flex-col justify-center items-center bg-transparent text-white text-center p-12 relative z-10">
-      <h2 className="text-5xl md:text-7xl font-bold mb-12">Trayectoria</h2>
+      {/* Título de la sección con BlurText */}
+      <BlurText
+        text="Trayectoria"
+        className="text-5xl md:text-7xl font-bold mb-12"
+        delay={100} // Ajusta el delay para el efecto de aparición
+        animateBy="words"
+        direction="top"
+      />
 
       <div className="relative max-w-4xl w-full mx-auto">
-        {/* Línea vertical central de la línea de tiempo */}
         <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-blue-600 h-full rounded-full hidden md:block"></div>
 
         {timelineEventsWithLoadStatus.map((event, index) => (
           <div
             key={index}
             className={`mb-8 flex items-center w-full ${
-              index % 2 === 0 ? 'md:justify-start' : 'md:justify-end' // Alterna izquierda/derecha
+              index % 2 === 0 ? 'md:justify-start' : 'md:justify-end'
             }`}
           >
-            {/* Contenido del evento (lado izquierdo para pares, derecho para impares) */}
             <div
               className={`w-full md:w-1/2 p-4 rounded-lg shadow-xl bg-gray-800 bg-opacity-70 transform hover:scale-105 transition-transform duration-300
                 ${index % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12 md:text-left'}`}
             >
               <h3 className="text-2xl font-semibold text-blue-300 mb-2 flex items-center justify-center md:justify-start">
-                {/* Mostrar el logo si se cargó, si no, mostrar el icono de Lucide */}
                 {event.logoLoaded && event.logo ? (
                   <img
                     src={event.logo}
@@ -123,7 +122,7 @@ const Experience = () => {
                     onError={() => handleLogoError(index)}
                   />
                 ) : (
-                  event.icon // Fallback al icono de Lucide si el logo no carga o no existe
+                  event.icon
                 )}
                 <span className="ml-2">{event.title}</span>
               </h3>
@@ -136,18 +135,16 @@ const Experience = () => {
               </ul>
             </div>
 
-            {/* Círculo del nodo en la línea de tiempo (solo visible en desktop) */}
             <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-blue-400 rounded-full items-center justify-center border-4 border-blue-800 z-10">
-              {/* Mostrar el logo en el círculo también si se cargó, si no, el icono de Lucide */}
               {event.logoLoaded && event.logo ? (
                 <img
                   src={event.logo}
                   alt={`${event.title} logo`}
-                  className="w-5 h-5 object-contain" // Tamaño más pequeño para el círculo
-                  onError={() => handleLogoError(index)} // Reutiliza el manejador de errores
+                  className="w-5 h-5 object-contain"
+                  onError={() => handleLogoError(index)}
                 />
               ) : (
-                React.cloneElement(event.icon, { size: 18, className: 'text-white' }) // Fallback
+                React.cloneElement(event.icon, { size: 18, className: 'text-white' })
               )}
             </div>
           </div>
