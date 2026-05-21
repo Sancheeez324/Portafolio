@@ -1,6 +1,6 @@
 // src/App.jsx
-import React, { useState, useEffect } from 'react';
-import './index.css';
+import React from 'react';
+import './App.css';
 
 // Importaciones de componentes comunes
 import Threads from './components/common/Threads.jsx';
@@ -21,9 +21,7 @@ import Contact from './components/sections/Contact/Contact.jsx';
 function App() {
   const professionText = "Ingeniero Informático/Desarrollador Full-Stack";
 
-  const handleTitleAnimationComplete = () => {
-    console.log('El título principal ha terminado de animarse!');
-  };
+  const handleTitleAnimationComplete = () => {};
 
   // Función para desplazamiento suave a una sección específica de la página.
   const scrollToSection = (id) => {

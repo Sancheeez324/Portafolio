@@ -1,7 +1,7 @@
 // src/components/sections/Projects/Projects.jsx
 import React from 'react';
-// Importa íconos de Lucide React para los proyectos (ej. para enlaces a GitHub, demo)
 import { Github, ExternalLink } from 'lucide-react';
+import BlurText from '../../common/BlurText.jsx';
 
 // Importa las imágenes locales de tus proyectos
 import portafolioImage from '../../../assets/Proyectos/portafolio.png';
@@ -49,8 +49,13 @@ const Projects = () => {
   return (
     // Sección principal "Proyectos" con ID para la navegación
     <section id="proyectos" className="min-h-screen flex flex-col justify-center items-center bg-transparent text-white text-center p-12 relative z-10">
-      {/* Título de la sección */}
-      <h2 className="text-5xl md:text-7xl font-bold mb-12">Proyectos</h2>
+      <BlurText
+        text="Proyectos"
+        className="text-5xl md:text-7xl font-bold mb-12"
+        delay={100}
+        animateBy="words"
+        direction="top"
+      />
 
       {/* Contenedor de las tarjetas de proyectos */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl w-full">
@@ -61,6 +66,7 @@ const Projects = () => {
               src={project.image}
               alt={project.title}
               className="w-full h-48 object-cover rounded-md mb-4"
+              onError={(e) => { e.currentTarget.style.display = 'none'; }}
             />
             {/* Título del proyecto */}
             <h3 className="text-3xl font-semibold mb-2 text-blue-300">{project.title}</h3>

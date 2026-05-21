@@ -59,7 +59,8 @@ const Certificates = () => {
               <img
                 src={cert.logo}
                 alt={`${cert.issuer} logo`}
-                className="w-24 h-24 object-contain mb-4" // Ajusta el tamaño según necesites
+                className="w-24 h-24 object-contain mb-4"
+                onError={(e) => { e.currentTarget.style.display = 'none'; }}
               />
             ) : (
               cert.icon // Fallback al icono si no hay logo
