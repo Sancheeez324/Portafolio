@@ -34,7 +34,14 @@ const Certificates = () => {
       logo: ciscoLogo, // Logo de Cisco
       icon: <Award size={40} />,
     },
-    // Agrega más certificados aquí siguiendo el mismo formato
+    {
+      title: 'Ethical Hacker',
+      issuer: 'Cisco Networking Academy',
+      date: '2025',
+      level: 'Certificación de Curso',
+      logo: ciscoLogo,
+      icon: <Award size={40} />,
+    },
   ];
 
   return (

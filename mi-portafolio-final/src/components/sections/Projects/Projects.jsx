@@ -37,6 +37,14 @@ const Projects = () => {
       image: riseOfHeroesImage,
     },
     {
+      title: 'MerMarket — Plataforma de Compra y Venta',
+      description: 'Plataforma web de compra y venta de comida desarrollada en equipo aplicando metodologías ágiles. Presentada en ExpoSoftware PUCV 2023. Incluye módulos de compra, venta y gestión de usuarios con pruebas de usabilidad.',
+      technologies: ['React', 'Node.js', 'MySQL', 'Agile', 'Vite'],
+      githubLink: null,
+      demoLink: '#',
+      image: 'https://placehold.co/400x250/0d1117/e6edf3?text=MerMarket',
+    },
+    {
       title: 'App de Mapas Históricos Interactivos',
       description: 'Aplicación web educativa desarrollada con React, que permite explorar civilizaciones históricas de distintos continentes a través de una interfaz visual, interactiva y multilingüe. Diseñada como herramienta didáctica para estudiantes de enseñanza básica y media.',
       technologies: ['React', 'Vite', 'CSS', 'JavaScript', 'HTML', 'Despliegue'],

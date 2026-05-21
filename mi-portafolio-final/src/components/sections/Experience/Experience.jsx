@@ -15,6 +15,7 @@ const Experience = () => {
   const initialTimelineEvents = [
     {
       type: 'other',
+      badge: { label: 'Formación', color: 'bg-amber-900 text-amber-300 border-amber-700' },
       title: 'Curso de Liderazgo para Estudiantes',
       subtitle: 'Universidad Adolfo Ibáñez',
       date: '2019 | Viña del Mar',
@@ -24,6 +25,7 @@ const Experience = () => {
     },
     {
       type: 'academic',
+      badge: { label: 'Académico', color: 'bg-purple-900 text-purple-300 border-purple-700' },
       title: 'Ingeniería de Ejecución Informática',
       subtitle: 'Pontificia Universidad Católica de Valparaíso',
       date: '2020-2024',
@@ -36,45 +38,59 @@ const Experience = () => {
     },
     {
       type: 'professional',
+      badge: { label: 'Laboral', color: 'bg-green-900 text-green-300 border-green-700' },
       title: 'IMG Online SPA',
-      subtitle: 'Practicante',
+      subtitle: 'QA Tester — Práctica Profesional',
       date: 'Enero-Marzo | 2023',
       description: [
-        'Pruebas de SW utilizando Retool y Scriptcase.',
-        'Desarrollo y diseño de modales en Retool.',
-        'Creación de casos de pruebas.',
-        'Programación en Python.',
-        'Uso avanzado de Excel.',
+        'Ejecuté pruebas comparativas de plataformas no-code (Retool y Scriptcase), documentando resultados y elaborando reportes técnicos de pros y contras.',
+        'Construí reportes dinámicos con Excel avanzado para seguimiento de cambios y análisis de datos.',
+        'Participé en reuniones diarias bajo metodología ágil, colaborando en coordinación y levantamiento de requerimientos.',
       ],
       icon: <Briefcase size={28} />,
       logo: imgOnlineLogo,
     },
     {
       type: 'professional',
+      badge: { label: 'Proyecto Título', color: 'bg-orange-900 text-orange-300 border-orange-700' },
       title: 'Proyecto de Título: Rise of Heroes',
       subtitle: 'Desarrollo de videojuego 3D con fines educativos',
       date: 'Enero-Julio | 2024',
       description: [
-        'Programación en Unity/C#, diseño de narrativa y mecánicas interactivas.',
-        'Diseño 3D en blender.',
+        'Diseñé y programé un videojuego histórico sobre la Guerra del Pacífico en Unity/C# con mecánicas de aprendizaje gamificadas.',
+        'Modelado 3D en Blender.',
       ],
       icon: <Briefcase size={28} />,
       logo: unityLogo,
     },
     {
       type: 'professional',
+      badge: { label: 'Laboral', color: 'bg-green-900 text-green-300 border-green-700' },
       title: 'Simotec',
-      subtitle: 'Evaluación de Riesgos Laborales',
-      date: 'Febrero-Abril | 2025',
+      subtitle: 'Desarrollador Full-Stack',
+      date: 'Feb-Abr | 2025',
       description: [
-        'Desarrollo de sistema web para evaluar riesgos laborales mediante pruebas psicológicas, cognitivas y simulaciones en VR.',
-        'Backend serverless utilizando AWS Lambda, Node.js y base de datos MySQL en AWS RDS.',
-        'Frontend SPA desarrollado en React con Vite.',
-        'Implementación de lógica de autenticación (JWT, bcrypt), gestión de roles y resultados personalizados por test.',
-        'Conexión y despliegue de la base de datos desde MySQL Workbench a la nube.',
+        'Diseñé y desarrollé un sistema web para evaluaciones psicológicas con integración de simulaciones en realidad virtual.',
+        'Backend con AWS Lambda, Node.js y MySQL (AWS RDS); frontend SPA con React y Vite.',
+        'Implementación de autenticación JWT, gestión de roles y resultados personalizados por test.',
       ],
       icon: <Briefcase size={28} />,
       logo: simotecLogo,
+    },
+    {
+      type: 'professional',
+      badge: { label: 'Laboral', color: 'bg-green-900 text-green-300 border-green-700' },
+      title: 'Senado de Chile',
+      subtitle: 'Desarrollador Full-Stack (vía RYC Consultores)',
+      date: 'Nov 2025 – Presente',
+      description: [
+        'Desarrollo del frontend con Angular y TypeScript, integrando múltiples APIs REST y servicios externos (Strapi v5, SIL).',
+        'Pruebas funcionales y técnicas en entornos de QA; documentación de componentes y decisiones técnicas.',
+        'Configuración de pipelines CI/CD en GitLab y contenedores Docker para despliegue en producción.',
+        'Colaboración transversal con distintos equipos del Senado en reuniones de requerimientos y mejora continua.',
+      ],
+      icon: <Briefcase size={28} />,
+      logo: null,
     },
   ];
 
@@ -113,6 +129,11 @@ const Experience = () => {
               className={`w-full md:w-1/2 p-4 rounded-lg shadow-xl bg-gray-800 bg-opacity-70 transform hover:scale-105 transition-transform duration-300
                 ${index % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12 md:text-left'}`}
             >
+              {event.badge && (
+                <span className={`inline-block text-xs font-semibold px-3 py-1 rounded-full border mb-3 ${event.badge.color}`}>
+                  {event.badge.label}
+                </span>
+              )}
               <h3 className="text-2xl font-semibold text-blue-300 mb-2 flex items-center justify-center md:justify-start">
                 {event.logoLoaded && event.logo ? (
                   <img

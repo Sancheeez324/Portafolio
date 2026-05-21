@@ -42,7 +42,7 @@ const Contact = () => {
             <div className="flex items-center text-lg text-gray-200">
               <Linkedin size={24} className="text-blue-400 mr-3" />
               <a
-                href="https://www.linkedin.com/in/pablo-sánchez-234702318/"
+                href="https://www.linkedin.com/in/pablo-s%C3%A1nchez-234702318/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-blue-400 transition-colors duration-300"
